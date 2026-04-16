@@ -1,0 +1,36 @@
+.integration-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.connect-btn,
+.sync-btn {
+  background: #0275d8;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+}
+
+.connected-text {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.integration-actions button {
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.integration-section {
+  margin-top: 1rem;
+}
+
+.integration-section ul {
+  padding-left: 1rem;
+}
