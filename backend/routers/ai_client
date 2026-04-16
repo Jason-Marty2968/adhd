@@ -1,0 +1,14 @@
+# backend/ai_client.py
+import google.generativeai as genai
+import os
+
+genai.configure(api_key=os.getenv("AQ.Ab8RN6JTOnAwtfadYQiu_qR6hz49Zrb7a50H3hci_Xgv_-AcaQ"))
+
+model = genai.GenerativeModel("gemini-1.5-flash")
+
+def generate_ai_summary(prompt: str) -> str:
+    try:
+        response = model.generate_content(prompt)
+        return response.text
+    except Exception as e:
+        return f"(AI summary unavailable: {e})"

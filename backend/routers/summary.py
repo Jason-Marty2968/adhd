@@ -4,33 +4,21 @@ from typing import List
 from datetime import datetime, timedelta
 
 from backend.models.summary import Summary, SummaryHistoryItem
-from backend.routers.tasks import get_all_tasks
+from backend.routers.tasks import get_all_tasks  # <-- import your task getter
 
 router = APIRouter()
 
 history_db: List[SummaryHistoryItem] = []
 
 
-def parse_date(task):
-    """Safely parse ISO timestamp from dict-based tasks."""
-    try:
-        return datetime.fromisoformat(task["created_at"]).date()
-    except Exception:
-        return None
-
-
 def generate_daily_summary(tasks):
     today = datetime.now().date()
-
-    todays_tasks = [
-        t for t in tasks
-        if parse_date(t) == today
-    ]
+    todays_tasks = [t for t in tasks if t.created_at.date() == today]
 
     if not todays_tasks:
         return Summary(text="No tasks created today.", items=[])
 
-    items = [f"{t['title']} (status: {t['status']})" for t in todays_tasks]
+    items = [f"{t.title} (status: {t.status})" for t in todays_tasks]
     text = f"You created {len(todays_tasks)} tasks today."
 
     return Summary(text=text, items=items)
@@ -40,15 +28,12 @@ def generate_weekly_summary(tasks):
     today = datetime.now().date()
     week_ago = today - timedelta(days=7)
 
-    weekly_tasks = [
-        t for t in tasks
-        if parse_date(t) is not None and parse_date(t) >= week_ago
-    ]
+    weekly_tasks = [t for t in tasks if t.created_at.date() >= week_ago]
 
     if not weekly_tasks:
         return Summary(text="No tasks created this week.", items=[])
 
-    items = [f"{t['title']} (status: {t['status']})" for t in weekly_tasks]
+    items = [f"{t.title} (status: {t.status})" for t in weekly_tasks]
     text = f"You created {len(weekly_tasks)} tasks this week."
 
     return Summary(text=text, items=items)
@@ -56,12 +41,14 @@ def generate_weekly_summary(tasks):
 
 @router.get("/daily", response_model=Summary)
 def get_daily(tasks=Depends(get_all_tasks)):
-    return generate_daily_summary(tasks)
+    summary = generate_daily_summary(tasks)
+    return summary
 
 
 @router.get("/weekly", response_model=Summary)
 def get_weekly(tasks=Depends(get_all_tasks)):
-    return generate_weekly_summary(tasks)
+    summary = generate_weekly_summary(tasks)
+    return summary
 
 
 @router.get("/history", response_model=List[SummaryHistoryItem])
