@@ -9,6 +9,8 @@ tasks_db = []
 @router.get("/")
 def get_tasks():
     return tasks_db
+def get_all_tasks():
+    return [Task(**t) for t in tasks_db]
 
 
 @router.post("/")
