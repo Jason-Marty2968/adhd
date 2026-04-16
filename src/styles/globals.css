@@ -93,10 +93,11 @@ button:disabled {
 /* -------------------------------------------------------
    LAYOUT HELPERS
 ------------------------------------------------------- */
+/* ⭐ FIXED: removed max-width + margin auto */
 .page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.5rem;
+  width: 100%;
+  padding: 1.5rem 0;
+  box-sizing: border-box;
 }
 
 .section {
@@ -164,12 +165,20 @@ button:disabled {
   align-items: center;
 }
 
+/* -------------------------------------------------------
+   APP LAYOUT (SIDEBAR + CONTENT)
+------------------------------------------------------- */
 .app-layout {
   display: flex;
+  width: 100%;
+  height: 100vh;
 }
 
+/* ⭐ FIX: Correct offset for fixed sidebar */
 .page-content {
   margin-left: 220px;
   padding: 2rem;
   width: calc(100% - 220px);
+  box-sizing: border-box;
+  overflow-y: auto;
 }

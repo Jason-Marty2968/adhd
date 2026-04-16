@@ -6,6 +6,8 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+
+  /* ⭐ Fixed sidebar — must be offset in page-content */
   position: fixed;
   left: 0;
   top: 0;

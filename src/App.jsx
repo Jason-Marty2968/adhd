@@ -15,6 +15,7 @@ import SettingsPage from "./pages/SettingsPage";
 import Sidebar from "./components/Sidebar";
 
 import "./styles/globals.css";
+import "./pages/pages.css";
 
 export default function App() {
   return (

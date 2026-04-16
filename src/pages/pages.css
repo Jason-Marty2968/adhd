@@ -1,40 +1,96 @@
-/* ⭐ Main layout wrapper */
+/* ---------------------------
+   PAGE CONTAINER
+---------------------------- */
+.page {
+  width: 100%;
+  padding: 1.5rem 0; /* no horizontal padding */
+  box-sizing: border-box;
+}
+
+.page h1 {
+  margin-bottom: 1rem;
+}
+
+/* ---------------------------
+   DASHBOARD
+---------------------------- */
+.dashboard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-nav button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  background: #4a90e2;
+  color: white;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.dashboard-nav button:hover {
+  background: #357ac9;
+}
+
+.dashboard-tasks-preview {
+  margin: 1.5rem 0;
+}
+
+.dashboard-tasks-preview ul {
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard-tasks-preview li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ---------------------------
+   LAYOUT (SIDEBAR + CONTENT)
+---------------------------- */
 .app-layout {
   display: flex;
   width: 100%;
   height: 100vh;
 }
 
+/* ⭐ This is the FIX: offset content by sidebar width */
 .page-content {
   flex: 1;
   padding: 2rem;
-  margin-left: 220px; /* ⭐ FIX: offset for fixed sidebar */
+  margin-left: 220px; /* match sidebar width */
+  max-width: 1200px;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
-
-/* ⭐ Page container */
-.page {
-  width: 100%;
-  padding: 1.5rem 0; /* remove horizontal padding */
-}
-
-/* ⭐ Calendar grid */
+/* ---------------------------
+   CALENDAR GRID
+---------------------------- */
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 1rem;
 }
 
-/* ⭐ Calendar columns */
 .calendar-column {
   background: #f8f8f8;
   padding: 1rem;
   border-radius: 8px;
   min-width: 150px;
+  box-sizing: border-box;
 }
 
-/* ⭐ Event cards */
 .event-card {
   background: white;
   padding: 0.75rem;
