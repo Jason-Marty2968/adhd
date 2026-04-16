@@ -1,16 +1,122 @@
-# React + Vite
+ADHD Assistant Backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A FastAPI backend that powers an ADHD‑friendly productivity assistant.
+It handles tasks, reminders, summaries, calendar events, and AI‑generated daily/weekly recaps using Google Gemini.
+✨ Features
 
-Currently, two official plugins are available:
+    Task Management — create, update, delete, and list tasks
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+    Reminders — store reminders and fetch upcoming ones
 
-## React Compiler
+    AI Summaries — daily/weekly summaries generated using Google Gemini
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+    Calendar Events — add and retrieve events
 
-## Expanding the ESLint configuration
+    User Profiles — simple user model for linking data
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    Modular Routing — clean separation of API endpoints
+
+
+Gif Walkthrough
+
+![App Demo](./public/2026-04-16%2019-23-02.gif)
+
+📁 Project Structure
+Code
+
+backend/
+│
+├── main.py               # FastAPI entrypoint
+├── ai_client.py          # Gemini AI summary generator
+│
+├── routers/              # API route handlers
+│   ├── tasks.py
+│   ├── reminders.py
+│   ├── summary.py
+│   ├── calendar.py
+│   └── user.py
+│
+└── models/               # Pydantic models
+    ├── task.py
+    ├── reminder.py
+    ├── summary.py
+    ├── calendar.py
+    └── user.py
+
+🚀 Getting Started
+1. Clone the repository
+bash
+
+git clone https://github.com/Jason-Marty2968/adhd.git
+cd adhd
+
+2. Create and activate a virtual environment
+bash
+
+python -m venv venv
+
+Windows:
+bash
+
+venv\Scripts\activate
+
+Mac/Linux:
+bash
+
+source venv/bin/activate
+
+3. Install dependencies
+bash
+
+pip install -r requirements.txt
+
+If you don’t have a requirements file yet:
+bash
+
+pip install fastapi uvicorn google-generativeai python-dotenv
+
+4. Add your Gemini API key
+
+Create a .env file in the project root:
+Code
+
+GEMINI_API_KEY=your_key_here
+
+5. Run the server
+bash
+
+uvicorn backend.main:app --reload --port 8000
+
+📡 API Documentation
+
+FastAPI automatically generates interactive docs:
+Code
+
+http://localhost:8000/docs
+
+You can test every endpoint directly from the browser.
+🤖 AI Summary Generation
+
+The backend uses Google Gemini via google-generativeai to generate:
+
+    Daily summaries
+
+    Weekly summaries
+
+    Task breakdowns
+
+    Productivity insights
+
+The logic lives in:
+Code
+
+backend/ai_client.py
+
+🧩 Contributing
+
+Pull requests are welcome.
+For major changes, open an issue first to discuss what you’d like to modify.
+
+📄 License
+
+MIT License
